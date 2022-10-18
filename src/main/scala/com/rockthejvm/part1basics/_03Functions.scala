@@ -44,14 +44,21 @@ object _03Functions {
     println(factorialTailRec(5, 1))
 
     def stringConcatenation(str: String, times: Int): String = {
-        if      (times == 0)    ""
-        else if (times == 1)    str
+        if      (times <= 0)    ""
         else    str + stringConcatenation(str, times-1)
     }
     println(stringConcatenation("Hari", 5))
+    
+    @tailrec
+    def stringConcatenationTailRecursive(str: String, times: Int, result: String): String = {
+        if      (times == 0)    result
+        else    stringConcatenationTailRecursive(str, times-1, result + str)
+    }
+    println(stringConcatenationTailRecursive("Hari", 5, ""))
 
-    // pure function :  i). deterministic-returns same output every time.
+    // pure function :  i). deterministic - returns a determined output every time.
     //                  ii) has no side effect  - doesn't perform I/O
+    //                                              * like don't do println()
     //                                          - doesn't change global variables
     //                                          - doesn't change outside world
 
@@ -78,7 +85,7 @@ object _03Functions {
     }
     println(doubleTheString("Hari"))
 
-    /** Side effect is discouraged in Scala or in funcation programming language **/
+    /** Side effect is discouraged in Scala or in any functional programming language **/
 
     def aBigFunction(num: Int): Int = {
         //Big function implemented using smaller auxiliary functions
@@ -92,27 +99,25 @@ object _03Functions {
     def greeting(name: String, age: Int): String =
         "Hi, my name is " + name + " and I am " + age + " years old"
 
+    // fib(0) = 0, fib(1) = 1, fib(2) = 1
+    // omitting num = 0 for simplicity sake
     def fibonacci(num: Int): Int = {
-        if (num < 2)       num
-        else fibonacci(num - 1) + fibonacci(num - 2)
+        if (num <= 2)   1
+        else            fibonacci(num - 1) + fibonacci(num - 2)
     }
 
     @tailrec
     def checkPrimeNumbersInRange(start: Int, end: Int): Unit = {
-
         def isPrime(num: Int): Boolean = {
-
             @tailrec
             def isDivisible(i: Int): Boolean = {
                 if (i < 2) false
                 else if (num % i == 0) true
                 else isDivisible(i - 1)
             }
-
             if (isDivisible(num / 2)) false
             else true
         }
-
         if (start <= end) {
             println("Is " + start + " prime ? " + isPrime(start))
             checkPrimeNumbersInRange(start + 1, end)
@@ -121,8 +126,15 @@ object _03Functions {
 
     def main(args: Array[String]): Unit = {
         println(greeting("Hari", 30))
-        val num: Int = 6
+        val num: Int = 1
         println(num + "th fibonacci number is " + fibonacci(num))   // 8
+        println(num + "th fibonacci number is " + fibonacci(num+1))   // 8
+        println(num + "th fibonacci number is " + fibonacci(num+2))   // 8
+        println(num + "th fibonacci number is " + fibonacci(num+3))   // 8
+        println(num + "th fibonacci number is " + fibonacci(num+4))   // 8
+        println(num + "th fibonacci number is " + fibonacci(num+5))   // 8
+        println(num + "th fibonacci number is " + fibonacci(num+6))   // 8
+        println(num + "th fibonacci number is " + fibonacci(num+7))   // 8
         checkPrimeNumbersInRange(2, 7)
     }
 }
