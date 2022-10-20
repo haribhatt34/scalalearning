@@ -2,6 +2,10 @@ package com.rockthejvm.part2oop
 
 import scala.language.postfixOps
 
+/*
+    Distinction between Methods and Functions:
+        Methods are just functions that can access the state of the class"
+*/
 object _03MethodNotation {
     
     class Person(val name: String, val age: Int, favoriteMovie: String) {
