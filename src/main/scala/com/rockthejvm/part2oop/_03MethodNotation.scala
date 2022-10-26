@@ -44,7 +44,7 @@ object _03MethodNotation {
 
         // Apply method 
         // i). special in Scala
-        // ii). Allow an object  to be invoked like a function
+        // ii). Allow an object to be invoked like a function
         //      Eg: val vehicle = new Vehicle
         //          vechicle() => will invoke apply method
         def apply(time: Int): String =
