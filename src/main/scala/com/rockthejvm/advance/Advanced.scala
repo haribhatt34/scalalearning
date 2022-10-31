@@ -49,13 +49,21 @@ object Advanced extends App {
     //      if methodWhichCanReturnNull() return a null         => None
     //          None is a singleton object, it is a normal, so no risk in accessing illegal members and methods
     val anOption = Option(methodWhichCanReturnNull())
-
     val stringProcessing = anOption match {
         case Some(str) => "I have obtained a valid string: str"
         case None => "I obtained nothing"
     }
-
     println("stringProcessing: " + stringProcessing)
+
+    val anotherOption: Option[Int] = Option(3)
+    val doubleOption: Option[Int] = anotherOption.map(_ * 2)
+    println("doubleOption: " + doubleOption)
+
+    val optionDescription: String = anotherOption match {
+        case Some(value) => s"the option is not empty: $value"
+        case None => s"the option is empty"
+    }
+    println("optionDescription: " + optionDescription)
 
     // we can either using Option with pattern matching like above to avoid null check
     // or we can use map, filter and flatMap
@@ -77,6 +85,12 @@ object Advanced extends App {
         case Success(validValue) => s"I have obtained a valid string: $validValue"
         case Failure(ex) => s"I have obtained an exception: $ex"
     }
+    println("anotherStringProcessing: " + anotherStringProcessing)
+
+    val anAttempt = Try(42)
+    val aModifiedAttempt = anAttempt.map(_  + 10)
+    println("aModifiedAttempt: " + aModifiedAttempt)
+
 
     /**
      * Evaluate something on another thread
@@ -105,35 +119,35 @@ object Advanced extends App {
     // blocking the main thread for 2000ms, so to lets the aFuture thread to complete its processing
     // now everything in aFuture should print on the console
     Thread.sleep(2000)
-    
+
     // future is a "collection" which contains a value after it's evaluated, until then it contains nothing
     // future is composable with map, flatMap and filter
-    
+
     // Future, Try and Option Types are called Monads
 
     /**
      * Implicits basics
      */
-    
+
     // Use Case #1: implicit arguments
     // implicit is a keyword
     def aMethodWithImplicitArgs(implicit arg: Int) = arg + 1
     implicit val myImplicitInt: Int = 46
-    // No need to pass an argument to the method call, 
+    // No need to pass an argument to the method call,
     //      compiler automatically figures out that method takes an implicit arg
     //      and tries to the find of type of Int that it can inject there.
     println(aMethodWithImplicitArgs)    // aMethodWithImplicitArgs(myImplicitInt)
-    
+
     // Use Case #2: implicit conversions
     // use this very carefully
-    //      usually we do implicit conversion to add methods to existing types 
+    //      usually we do implicit conversion to add methods to existing types
     //      over which we don't have any control over the code
     implicit class MyRichInteger(n: Int) {
         def isEven() = n % 2 == 0
     }
     println(23.isEven())
-    // how does it works : 
-    // compiler check to find an implicit wrapper over this which is an int, and check maybe that class has isEven method 
+    // how does it works :
+    // compiler check to find an implicit wrapper over this which is an int, and check maybe that class has isEven method
     //      then call its isEven method on that
     // for above compiler generates below code:
 //    class MyRichInteger(n: Int) {
@@ -142,5 +156,26 @@ object Advanced extends App {
 //    implicit final def MyRichInteger(n: Int): MyRichInteger = new MyRichInteger(n)
 //    println(MyRichInteger(23).isEven())
 
+    // partial functions
+    // diff b/w normal and partial function do not accept any function of type Int,
+    //      it only receives arguments that satisfy some patterns[pattern matching]
+    // below partial function takes an Int and returns an Int
+    // it will only accept 1, 8, 100 as argument, else receives "Match Error"
+    val aPartialFunction: PartialFunction[Int, Int] = {
+        case 1 => 43
+        case 8 => 56
+        case 100 => 999
+    }
 
+    // some more advance stuff
+    // F type itself have another type
+    // type argument is itself generic
+    trait HigherKindedType[F[_]]
+    trait SequenceChecker[F[_]] {
+        def isSequential: Boolean
+    }
+    
+    val listChecker = new SequenceChecker[List] {
+        override def isSequential = true
+    }
 }
