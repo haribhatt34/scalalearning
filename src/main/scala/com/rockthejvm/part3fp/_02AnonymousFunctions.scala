@@ -9,6 +9,7 @@ object _02AnonymousFunctions {
     // lambdas = anonymous function instances
     val doubler_v2: Int => Int = (x: Int) => x * 2  // same as above
     val doubler_v3 = (x: Int) => x * 2  // same as above
+    // val doubler_v3_v1 = x => x * 2      // compilation error, as compiler is not able to judge the type of input i.e. x
 
     // new Function(Int, Int, In] { override def apply...}
     val adder: (Int, Int) => Int = (x: Int, y: Int) => x + y

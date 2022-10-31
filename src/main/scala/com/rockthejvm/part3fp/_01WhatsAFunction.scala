@@ -97,10 +97,19 @@ object _01WhatsAFunction {
         override def apply(v1: Int) = returnSame("Hari Shankar")
     }
 
+    val tripled = new Function[Int, Int] {
+        override def apply(v1: Int) = v1 * 3
+    }
+    val tripled_v2: Function[Int, Int] = (v1: Int) => v1 * 3
+    val tripled_v3: Function[Int, Int] =  _ * 3
+    val tripled_v4 = (v1: Int) => v1 * 3
+    val tripled_v5: (Int => Int) = _ * 3
+//    val tripled_v3: = _ * 3
+
     def main(args: Array[String]): Unit = {
         println(anAddition)
         println(aThreeArgFunction(1, 2, true, 4))
         println(myName)
-
+        println("tripled: " + tripled(3))
     }
 }

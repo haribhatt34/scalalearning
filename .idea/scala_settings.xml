@@ -21,4 +21,7 @@
     <option name="showArgumentsToByNameParams" value="true" />
     <option name="showImplicitConversions" value="true" />
   </component>
+  <component name="WorksheetDefaultProjectSettings">
+    <option name="runType" value="Plain" />
+  </component>
 </project>

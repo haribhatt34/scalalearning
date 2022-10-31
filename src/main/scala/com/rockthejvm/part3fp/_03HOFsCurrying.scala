@@ -106,9 +106,15 @@ object _03HOFsCurrying {
         //      nTimes_v2 itself takes two args f & Int those are f & n-1 below
         //      and nTimes_v2 return type is a function i.e. (Int => Int)
         //      so, we when we invoke this def. as nTimes_v2, it will return (Int => Int), but we need an Int as return type
-        // TODO: DOUBT  i)  how are we using apply method here &
-        //              ii) and why are we passing only a single f(x) as an argument ?
+        // TODO: DOUBT  i)  how are we using apply method here ?
+        //              ii) and why are we passing only a single f(x) as an argument?
+        //              Ans: My assumption - since nTimes_v2 itself return a function type (Int => Int)
+        //                  we can use currying by passing an Int and then getting an Int in return, 
+        //                  which perfectly fits
+        //                      else (x: Int) => Int
+        //                  again why f(x), because it evaluates to an Int
         //              iii). are we currying here, compare with superAdder
+        //              Ans: Yes, we are.
         //          
         // else (x: Int) => nTimes_v2(f, n-1).apply(f(x))
         else (x: Int) => nTimes_v2(f, n-1)(f(x))

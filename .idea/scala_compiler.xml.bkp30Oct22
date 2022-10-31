@@ -8,9 +8,13 @@
     <option name="higherKinds" value="true" />
     <option name="existentials" value="true" />
     <option name="macros" value="true" />
+    <option name="experimental" value="true" />
     <option name="deprecationWarnings" value="true" />
     <option name="uncheckedWarnings" value="true" />
     <option name="featureWarnings" value="true" />
+    <option name="optimiseBytecode" value="true" />
+    <option name="explainTypeErrors" value="true" />
+    <option name="continuations" value="true" />
     <profile name="sbt 1" modules="scala3-simple">
       <option name="dynamics" value="true" />
       <option name="postfixOps" value="true" />
@@ -19,9 +23,13 @@
       <option name="higherKinds" value="true" />
       <option name="existentials" value="true" />
       <option name="macros" value="true" />
+      <option name="experimental" value="true" />
       <option name="deprecationWarnings" value="true" />
       <option name="uncheckedWarnings" value="true" />
       <option name="featureWarnings" value="true" />
+      <option name="optimiseBytecode" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <option name="continuations" value="true" />
     </profile>
     <profile name="sbt 2" modules="scala-3-beginners" />
   </component>

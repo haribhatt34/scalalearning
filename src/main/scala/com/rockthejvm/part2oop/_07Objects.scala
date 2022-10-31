@@ -66,6 +66,21 @@ object _07Objects {
     
     // object can extend classes
     object BigFoot extends Person("Big Foot")
+
+    // run below command in terminal to see the internal code generation by compiler:
+    //  source: https://docs.scala-lang.org/scala3/guides/tasty-overview.html
+    //  scalac -decompile ./target/scala-3.0.0/classes/com/rockthejvm/part2oop/_07Objects.tasty
+    //    val chk1: com.rockthejvm.part3fp._07LinearCollections.Persona = new com.rockthejvm.part3fp._07LinearCollections.Persona("Hari")
+    //    val chk2: com.rockthejvm.part3fp._07LinearCollections.Persona = new com.rockthejvm.part3fp._07LinearCollections.Persona("Hari")
+    //    val chk3: com.rockthejvm.part3fp._07LinearCollections.Persona = new com.rockthejvm.part3fp._07LinearCollections.Persona("Hari")
+    //    val chk4: com.rockthejvm.part3fp._07LinearCollections.Persona = new com.rockthejvm.part3fp._07LinearCollections.Persona("Hari")
+
+    class Persona(name: String)
+
+    val chk1 = new Persona("Hari")
+    val chk2 = Persona("Hari")
+    val chk3 = new Persona("Hari")
+    val chk4 = Persona("Hari")
     
     // Scala application = object + def main(args: Array[String]): Unit
     def main(args: Array[String]): Unit = {
@@ -76,5 +91,9 @@ object _07Objects {
         println(isSameMary_v3)
         println(isSameMary_v4)
         println(isSameTheSingleton_v2)
+        println(chk1)   // com.rockthejvm.part2oop._07Objects$Persona@436e852b
+        println(chk2)   // com.rockthejvm.part2oop._07Objects$Persona@32d2fa64
+        println(chk3)   // com.rockthejvm.part2oop._07Objects$Persona@1d8d30f7
+        println(chk4)   // com.rockthejvm.part2oop._07Objects$Persona@3e57cd70
     }
 }
