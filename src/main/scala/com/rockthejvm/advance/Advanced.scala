@@ -129,7 +129,7 @@ object Advanced extends App {
      * Implicits basics
      */
 
-    // Use Case #1: implicit arguments
+    // Use Case #1: implicit arguments/parameter
     // implicit is a keyword
     def aMethodWithImplicitArgs(implicit arg: Int) = arg + 1
     implicit val myImplicitInt: Int = 46
