@@ -5,8 +5,8 @@
     <option name="customVMPath" value="/Library/Java/JavaVirtualMachines/temurin-11.jdk/Contents/Home" />
     <option name="linkedExternalProjectsSettings">
       <SbtProjectSettings>
+        <option name="allowSbtVersionOverride" value="true" />
         <option name="converterVersion" value="1" />
-        <option name="enableDebugSbtShell" value="true" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
@@ -17,9 +17,8 @@
         <option name="preferScala2" value="false" />
         <option name="resolveSbtClassifiers" value="true" />
         <option name="sbtVersion" value="1.5.2" />
-        <option name="useSbtShellForBuild" value="true" />
-        <option name="useSbtShellForImport" value="true" />
       </SbtProjectSettings>
     </option>
+    <option name="maximumHeapSize" value="2048" />
   </component>
 </project>
